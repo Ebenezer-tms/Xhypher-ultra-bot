@@ -66,21 +66,33 @@ const {
   
   //===================SESSION-AUTH============================
 if (!fs.existsSync(__dirname + '/sessions/creds.json')) {
-if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
-const sessdata = config.SESSION_ID.replace("SUBZERO-MD;;;", '');
-const filer = File.fromURL(`https://mega.nz/file/${sessdata}`)
-filer.download((err, data) => {
-if(err) throw err
-fs.writeFile(__dirname + '/sessions/creds.json', data, () => {
-console.log("Session downloaded ✅")
-})})}
+    if(!config.SESSION_ID) return console.log('Please add your session to SESSION_ID env !!')
+    
+    const sessdata = config.SESSION_ID.replace("XHYPHER:~", '');
+    
+    try {
+        // Decode Base64 session data
+        const sessionData = Buffer.from(sessdata, 'base64');
+        
+        // Ensure sessions directory exists
+        if (!fs.existsSync(__dirname + '/sessions')) {
+            fs.mkdirSync(__dirname + '/sessions', { recursive: true });
+        }
+        
+        // Write the decoded session data to creds.json
+        fs.writeFileSync(__dirname + '/sessions/creds.json', sessionData);
+        console.log("Session downloaded and saved ✅");
+    } catch(err) {
+        console.error("Error decoding session:", err);
+        throw err;
+    }
+}
 
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 9090;
-  
-  //=============================================
-  
+//============================================
+
   async function connectToWA() {
   console.log("Connecting to WhatsApp ⏳️...");
   const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/sessions/')

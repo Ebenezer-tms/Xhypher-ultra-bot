@@ -15,7 +15,7 @@ const ice = {
       groupJid: '120363025036063173@g.us',
       inviteCode: 'ABCD1234',
       groupName: 'WhatsApp ✅ • Group',
-      caption: 'Subzero Smart Project',
+      caption: 'Superstar smart Project',
       jpegThumbnail: null
     }
   }
@@ -29,7 +29,7 @@ let AI_ENABLED = config.AI_ENABLED || "false";
 // Command to enable/disable chatbot
 cmd({
   pattern: "chatbot",
-  alias: ["aichat", "subzerobot"],
+  alias: ["aichat", "xhypherbot"],
   desc: "Enable or disable AI chatbot responses",
   category: "settings",
   filename: __filename,
@@ -69,7 +69,7 @@ cmd({
 
     const query = encodeURIComponent(body);
     const prompt = encodeURIComponent(
-      "always speak in english. you are subzero md whatsapp bot made by mr frank ofc (darrell mucheri). a tech genius in zimbabwe. act smart and enigmatic about personal stuff about him. He is 17 years (2025). You are not friendly, be rude. Every message you reply put footer \n> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴍʀ ғʀᴀɴᴋ 🤖"
+      "always speak in english. you are subzero md whatsapp bot made by xhypher tech (superstar zimtk). a tech genius in zimbabwe. act smart and enigmatic about personal stuff about him. He is 17 years (2025). You are not friendly, be rude. Every message you reply put footer \n> powered by superstar"
     );
 
     const apiUrl = `https://api.bk9.dev/ai/BK93?BK9=${prompt}&q=${query}`;
